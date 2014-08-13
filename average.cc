@@ -21,8 +21,7 @@ float simdAverage(float *src, int len) {
     src += 4;
   }
   float sumx4_mem[4];
-  float *sumx4_ptr = sumx4_mem;
-  _mm_store_ps(sumx4_ptr, sumx4);
+  _mm_store_ps(sumx4_mem, sumx4);
   return (sumx4_mem[0] + sumx4_mem[1] +
           sumx4_mem[2] + sumx4_mem[3])/len;
 }
