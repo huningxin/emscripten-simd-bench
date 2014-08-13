@@ -8649,6 +8649,7 @@ function _main() {
  HEAP32[$vararg_ptr1 >> 2] = HEAP32[tempDoublePtr >> 2];
  HEAP32[$vararg_ptr1 + 4 >> 2] = HEAP32[tempDoublePtr + 4 >> 2];
  _printf(8, $vararg_buffer6 | 0) | 0;
+ var HEAP32x4 = new Float32x4Array(HEAP32.buffer);
  $15 = _clock() | 0;
  $16 = HEAP32[$src >> 2] | 0;
  $i1$04 = 0;
@@ -8657,7 +8658,7 @@ function _main() {
   $i$03$i = 0;
   $sumx4$02$i = SIMD.float32x4.splat(0);
   while (1) {
-   $sumx4$02$i = SIMD.float32x4.add($sumx4$02$i, SIMD.float32x4(HEAPF32[$$01$i >> 2], HEAPF32[$$01$i + 4 >> 2], HEAPF32[$$01$i + 8 >> 2], HEAPF32[$$01$i + 12 >> 2]));
+   $sumx4$02$i = SIMD.float32x4.add($sumx4$02$i, HEAP32x4[$$01$i >> 4]);
    $i$03$i = $i$03$i + 1 | 0;
    if (($i$03$i | 0) == 2500) {
     break;
