@@ -2,6 +2,9 @@
 #include <time.h>
 #include <xmmintrin.h>
 
+const static int len = 100000;
+const static int iterations = 10000;
+
 float average(float *src, int len) {
   float sum = 0.0;
   for (int i = 0; i < len; ++i) {
@@ -31,12 +34,11 @@ void initArray(float *src, int len) {
 }
 
 int main() {
-  const int len = 100000;
-  const int iterations = 100000;
-  float src[len];
+  float *src = NULL;
+  posix_memalign((void **)&src, 16, len * sizeof(float));
   float result = 0.0;
   clock_t start, end;
-  double cpu_time_used, cpu_time_used1;
+  double cpu_time_used, cpu_time_used_simd;
 
   initArray(src, len);
   printf("init done\n");
@@ -52,8 +54,10 @@ int main() {
   for (int i = 0; i < iterations; ++i)
     result = simdAverage(src, len);
   end = clock();
-  cpu_time_used1 = ((double) (end - start));
-  printf("averagex4 result: %f %f\n", result, cpu_time_used1);
+  cpu_time_used_simd = ((double) (end - start));
+  printf("simdAverage result: %f %f\n", result, cpu_time_used_simd);
 
-  printf("speed up: %f\n", cpu_time_used/cpu_time_used1);
+  printf("speed up: %f\n", cpu_time_used/cpu_time_used_simd);
+  free(src);
+  return 0;
 }
