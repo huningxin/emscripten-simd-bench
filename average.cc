@@ -3,8 +3,8 @@
 #include <time.h>
 #include <xmmintrin.h>
 
-const static int len = 100000;
-const static int iterations = 10000;
+const static int len = 10000;
+const static int iterations = 100000;
 
 float average(float *src, int len) {
   float sum = 0.0;
@@ -16,7 +16,7 @@ float average(float *src, int len) {
 
 float simdAverage(float *src, int len) {
   __m128 sumx4 = _mm_setzero_ps();
-  for (int i = 0; i < len; i += 4) {
+  for (int i = 0; i < len / 4; ++i) {
     __m128 v = _mm_load_ps(src);
     sumx4 = _mm_add_ps(sumx4, v);
     src += 4;
@@ -29,7 +29,7 @@ float simdAverage(float *src, int len) {
 
 void initArray(float *src, int len) {
 	for (int i = 0; i < len; ++i) {
-    src[i] = 0.1 * i;
+    src[i] = 0.1;
   }
 }
 
