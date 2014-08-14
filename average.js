@@ -8031,7 +8031,7 @@ function _free($mem) {
    } else {
     $296 = 25 - ($I18$0 >>> 1) | 0;
    }
-   L204 : do {
+   L205 : do {
     if ((HEAP32[$287 + 4 >> 2] & -8 | 0) == ($psize$1 | 0)) {
      $T$0$lcssa = $287;
     } else {
@@ -8045,7 +8045,7 @@ function _free($mem) {
       }
       if ((HEAP32[$299 + 4 >> 2] & -8 | 0) == ($psize$1 | 0)) {
        $T$0$lcssa = $299;
-       break L204;
+       break L205;
       } else {
        $K19$057 = $K19$057 << 1;
        $T$056 = $299;
@@ -8614,7 +8614,7 @@ function _dispose_chunk($p, $psize) {
  return;
 }
 function _main() {
- var $$01$i = 0, $0 = 0, $13 = 0.0, $15 = 0, $16 = 0, $3 = 0, $32 = 0.0, $4 = 0, $i$01$i = 0, $i$02$i = 0, $i$03$i = 0, $i$06 = 0, $i1$04 = 0, $src = 0, $sum$01$i = 0.0, $sumx4$02$i = 0, $vararg_buffer6 = 0, $vararg_ptr1 = 0, $vararg_ptr5 = 0, sp = 0;
+ var $0 = 0, $13 = 0.0, $15 = 0, $16 = 0, $17 = 0, $3 = 0, $33 = 0.0, $4 = 0, $i$01$i = 0, $i$02$i = 0, $i$02$i2 = 0, $i$07 = 0, $i1$05 = 0, $src = 0, $sum$01$i = 0.0, $sumx4$01$i = 0, $vararg_buffer6 = 0, $vararg_ptr1 = 0, $vararg_ptr5 = 0, sp = 0;
  sp = STACKTOP;
  STACKTOP = STACKTOP + 32 | 0;
  $vararg_buffer6 = sp;
@@ -8630,16 +8630,16 @@ function _main() {
  _puts(80) | 0;
  $3 = _clock() | 0;
  $4 = HEAP32[$src >> 2] | 0;
- $i$06 = 0;
+ $i$07 = 0;
  do {
-  $i$02$i = 0;
+  $i$02$i2 = 0;
   $sum$01$i = 0.0;
   do {
-   $sum$01$i = $sum$01$i + +HEAPF32[$4 + ($i$02$i << 2) >> 2];
-   $i$02$i = $i$02$i + 1 | 0;
-  } while (($i$02$i | 0) != 1e4);
-  $i$06 = $i$06 + 1 | 0;
- } while (($i$06 | 0) != 1e6);
+   $sum$01$i = $sum$01$i + +HEAPF32[$4 + ($i$02$i2 << 2) >> 2];
+   $i$02$i2 = $i$02$i2 + 1 | 0;
+  } while (($i$02$i2 | 0) != 1e4);
+  $i$07 = $i$07 + 1 | 0;
+ } while (($i$07 | 0) != 1e6);
  $13 = +((_clock() | 0) - $3 | 0);
  HEAPF64[tempDoublePtr >> 3] = $sum$01$i / 1.0e4;
  HEAP32[$vararg_buffer6 >> 2] = HEAP32[tempDoublePtr >> 2];
@@ -8649,35 +8649,30 @@ function _main() {
  HEAP32[$vararg_ptr1 >> 2] = HEAP32[tempDoublePtr >> 2];
  HEAP32[$vararg_ptr1 + 4 >> 2] = HEAP32[tempDoublePtr + 4 >> 2];
  _printf(8, $vararg_buffer6 | 0) | 0;
- var HEAP32x4 = new Float32x4Array(HEAP32.buffer);
+ var HEAPF32x4 = new Float32x4Array(HEAPF32.buffer);
  $15 = _clock() | 0;
  $16 = HEAP32[$src >> 2] | 0;
- $i1$04 = 0;
+ $i1$05 = 0;
  do {
-  $$01$i = $16;
-  $i$03$i = 0;
-  $sumx4$02$i = SIMD.float32x4.splat(0);
-  while (1) {
-   $sumx4$02$i = SIMD.float32x4.add($sumx4$02$i, HEAP32x4[$$01$i >> 4]);
-   $i$03$i = $i$03$i + 1 | 0;
-   if (($i$03$i | 0) == 2500) {
-    break;
-   } else {
-    $$01$i = $$01$i + 16 | 0;
-   }
-  }
-  $i1$04 = $i1$04 + 1 | 0;
- } while (($i1$04 | 0) != 1e6);
- $32 = +((_clock() | 0) - $15 | 0);
- HEAPF64[tempDoublePtr >> 3] = ($sumx4$02$i.w + ($sumx4$02$i.z + ($sumx4$02$i.x + $sumx4$02$i.y))) / 1.0e4;
+  $i$02$i = 0;
+  $sumx4$01$i = SIMD.float32x4.splat(0);
+  do {
+   $17 = $16 + ($i$02$i << 2) | 0;
+   $sumx4$01$i = SIMD.float32x4.add($sumx4$01$i, HEAPF32x4[$17 >> 4]);
+   $i$02$i = $i$02$i + 4 | 0;
+  } while (($i$02$i | 0) < 1e4);
+  $i1$05 = $i1$05 + 1 | 0;
+ } while (($i1$05 | 0) != 1e6);
+ $33 = +((_clock() | 0) - $15 | 0);
+ HEAPF64[tempDoublePtr >> 3] = ($sumx4$01$i.w + ($sumx4$01$i.z + ($sumx4$01$i.x + $sumx4$01$i.y))) / 1.0e4;
  HEAP32[$vararg_buffer6 >> 2] = HEAP32[tempDoublePtr >> 2];
  HEAP32[$vararg_buffer6 + 4 >> 2] = HEAP32[tempDoublePtr + 4 >> 2];
  $vararg_ptr5 = $vararg_buffer6 + 8 | 0;
- HEAPF64[tempDoublePtr >> 3] = $32;
+ HEAPF64[tempDoublePtr >> 3] = $33;
  HEAP32[$vararg_ptr5 >> 2] = HEAP32[tempDoublePtr >> 2];
  HEAP32[$vararg_ptr5 + 4 >> 2] = HEAP32[tempDoublePtr + 4 >> 2];
  _printf(32, $vararg_buffer6 | 0) | 0;
- HEAPF64[tempDoublePtr >> 3] = $13 / $32;
+ HEAPF64[tempDoublePtr >> 3] = $13 / $33;
  HEAP32[$vararg_buffer6 >> 2] = HEAP32[tempDoublePtr >> 2];
  HEAP32[$vararg_buffer6 + 4 >> 2] = HEAP32[tempDoublePtr + 4 >> 2];
  _printf(64, $vararg_buffer6 | 0) | 0;

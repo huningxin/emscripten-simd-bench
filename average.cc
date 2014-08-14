@@ -16,10 +16,9 @@ float average(float *src, int len) {
 
 float simdAverage(float *src, int len) {
   __m128 sumx4 = _mm_setzero_ps();
-  for (int i = 0; i < len / 4; ++i) {
-    __m128 v = _mm_load_ps(src);
+  for (int i = 0; i < len; i+=4) {
+    __m128 v = _mm_load_ps(src + i);
     sumx4 = _mm_add_ps(sumx4, v);
-    src += 4;
   }
   float sumx4_mem[4];
   _mm_store_ps(sumx4_mem, sumx4);
