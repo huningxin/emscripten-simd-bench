@@ -9,8 +9,8 @@ const static int iterations = 1000000;
 float average(float *src, int len) {
   float sum = 0.0;
   for (int i = 0; i < len; ++i) {
-  sum = sum + src[i];
-}
+    sum = sum + src[i];
+  }
   return sum/len;
 }
 
