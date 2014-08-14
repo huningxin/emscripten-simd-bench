@@ -8639,7 +8639,7 @@ function _main() {
    $i$02$i = $i$02$i + 1 | 0;
   } while (($i$02$i | 0) != 1e4);
   $i$06 = $i$06 + 1 | 0;
- } while (($i$06 | 0) != 1e5);
+ } while (($i$06 | 0) != 1e6);
  $13 = +((_clock() | 0) - $3 | 0);
  HEAPF64[tempDoublePtr >> 3] = $sum$01$i / 1.0e4;
  HEAP32[$vararg_buffer6 >> 2] = HEAP32[tempDoublePtr >> 2];
@@ -8667,7 +8667,7 @@ function _main() {
    }
   }
   $i1$04 = $i1$04 + 1 | 0;
- } while (($i1$04 | 0) != 1e5);
+ } while (($i1$04 | 0) != 1e6);
  $32 = +((_clock() | 0) - $15 | 0);
  HEAPF64[tempDoublePtr >> 3] = ($sumx4$02$i.w + ($sumx4$02$i.z + ($sumx4$02$i.x + $sumx4$02$i.y))) / 1.0e4;
  HEAP32[$vararg_buffer6 >> 2] = HEAP32[tempDoublePtr >> 2];

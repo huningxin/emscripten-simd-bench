@@ -4,7 +4,7 @@
 #include <xmmintrin.h>
 
 const static int len = 10000;
-const static int iterations = 100000;
+const static int iterations = 1000000;
 
 float average(float *src, int len) {
   float sum = 0.0;

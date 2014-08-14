@@ -1,6 +1,6 @@
 var a   = new Float32Array(10000);
 var ax4 = new Float32x4Array(a.buffer);
-var iterations = 100000;
+var iterations = 1000000;
 
 function initArray() {
   var j = 0;
